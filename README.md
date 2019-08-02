@@ -2,6 +2,11 @@
 
 ### Chrome商店链接[https://chrome.google.com/webstore/detail/%E5%BF%AB%E6%8D%B7%E8%A1%A8%E6%83%85%E6%90%9C%E7%B4%A2/jgnhibgfofllcbdhhbakpnaignhbbcke?hl=zh-CN&gl=US](https://chrome.google.com/webstore/detail/%E5%BF%AB%E6%8D%B7%E8%A1%A8%E6%83%85%E6%90%9C%E7%B4%A2/jgnhibgfofllcbdhhbakpnaignhbbcke?hl=zh-CN&gl=US)
 
+## 备注
+处理图片转gif使用了web worker，打包后的代码本地无法使用，需启动服务或放到线上。
+gif.worker.js 独立放在了一个文件夹，因为webpack不处理它
+
+
 ## Project setup
 ```
 npm install

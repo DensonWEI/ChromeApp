@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "嗨皮表情搜索",
     "description": "这是一个用于快速搜索表情包的插件，你可以使用快捷键“Ctrl + Shift + E”快速打开使用",
-    "version": "1.0.2",
+    "version": "1.1.2",
     "icons": {
         "16": "img/icon.png",
         "48": "img/icon.png",
@@ -18,14 +18,15 @@
             "https://pic.sogou.com/pics/json.jsp/"
         ],
         "js": [
-            "js/about.a9da7044.js",
-            "js/app.2777a6bb.js",
-            "js/chunk-vendors.5eb1563a.js"
+            "js/about.js",
+            "js/app.js",
+            "js/chunk.js",
+            "js/gif.worker.js"
         ],
         "css": [
-            "css/about.1813370c.css",
-            "css/app.7ec9d3ef.css",
-            "css/chunk-vendors.77549ef9.css"
+            "css/about.css",
+            "css/app.css",
+            "css/chunk.css"
         ],
         "run_at": "document_start"
     }],

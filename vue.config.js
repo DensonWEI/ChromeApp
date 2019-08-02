@@ -1,6 +1,6 @@
 // vue.config.js
 module.exports = {
-  publicPath: '/',
+  publicPath: './',
   devServer: {
     // open: true,
     host: '0.0.0.0',
