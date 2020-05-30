@@ -11,7 +11,7 @@
         <v-tooltip bottom>
           <template v-slot:activator='{ on }'>
             <v-btn icon v-on="on">
-              <v-icon >favorite</v-icon>
+              <v-icon color="pink">favorite</v-icon>
             </v-btn>
           </template>
           <span>Coming</span>
@@ -43,7 +43,7 @@
             >
               <img
                 :class="['elevation-4', 'myImg']"
-                :src="n.locImageLink"
+                :src="n.thumbUrl"
                 alt="" >
                 <!-- <span class="gif">gif {{n.locImageLink.lastIndexOf('.gif')}}</span> -->
             </v-flex>
@@ -59,6 +59,7 @@
         fab
         bottom
         right
+        :loading="load"
         ref="button"
         @click="topTop"
         color="pink">
@@ -86,12 +87,12 @@ var api = ''
 if (process.env.NODE_ENV === 'development') {
   api = 'api'
 } else {
-  api = 'https://pic.sogou.com/pics/json.jsp'
+  api = 'https://pic.sogou.com/pics'
 }
 export default {
   data: () => ({
     distance: 30,
-    load: true,
+    load: false,
     page: 0,
     value: '',
     imgList: [],
@@ -111,8 +112,8 @@ export default {
     onScroll (e) {
       var offsetTop = e.target.scrollTop
       let childH = this.$refs.child.offsetHeight
-      if (childH - (e.target.scrollTop + this.$refs.father.offsetHeight - 32) <= this.distance && this.load) {
-        console.log('触发，加载')
+      if (childH - (e.target.scrollTop + this.$refs.father.offsetHeight - 32) <= this.distance && !this.load) {
+        console.log('触底，需要加载')
         this.doSearch()
       }
 
@@ -132,23 +133,30 @@ export default {
     // 搜索
     doSearch () {
       if (!this.value) return false
-      this.load = false
+      this.load = true
       this.$Axios.get(api, {
         params: {
           query: `${this.value} 表情`,
-          st: 5,
-          start: this.page * 60,
-          xml_len: 60
+          mode: 1,
+          mood: 0,
+          dm: 0,
+          start: this.page * 48,
+          reqType: 'ajax',
+          reqFrom: 'result',
+          tn: 0
         }
       }).then(res => {
         if (res.data.items) {
           this.imgList = this.imgList.concat(res.data.items)
-          if (res.data.items.length === 0) {
-            this.snackbarTxt = '收手吧，内容到此为止了！'
+          if (res.data.items.length !== 48) {
+            this.snackbarTxt = '额，被你榨干了！'
             this.snackbar = true
             return
           }
-          this.load = true
+          setTimeout(() => {
+            this.load = false
+          }, 500)
+
           this.page++
         }
       }).catch(err => {

@@ -65,145 +65,145 @@ export default {
   },
   mounted () {
     console.log(`运行环境：${process.env.NODE_ENV}`)
-    // var dropbox = this.$refs.dropbox
-    // var dropbox = document.querySelector('.home')
-    // console.log(dropbox)
-    // dropbox.addEventListener('dragenter', this.onDragEnter, false)
-    // dropbox.addEventListener('dragover', this.onDragOver, false)
-    // dropbox.addEventListener('drop', this.onDrop, false)
+    var dropbox = this.$refs.dropbox
+    var dropbox = document.querySelector('.home')
+    console.log(dropbox)
+    dropbox.addEventListener('dragenter', this.onDragEnter, false)
+    dropbox.addEventListener('dragover', this.onDragOver, false)
+    dropbox.addEventListener('drop', this.onDrop, false)
   },
   methods: {
     // 搜索表情
-    // doSearch () {
-    //   if (!this.value) {
-    //     this.dialog = true
-    //     return
-    //   }
-    //   this.$router.push({ path: '/list', query: { keyword: this.value } })
-    // },
-    // // 转Gif格式
-    // toGIF (imgElement = this.$refs.imgOrigin) {
-    //   // workerScript 放在了专门建的文件里面，因为webpack不打包，所以单独存放了
-    //   var box = this.$refs.box
-    //   var gif = new GIF({
-    //     workers: 2,
-    //     quality: 10,
-    //     height: imgElement.naturalHeight,
-    //     width: imgElement.naturalWidth,
-    //     workerScript: './js/gif.worker.js'
-    //   })
-    //   // 填入图片
-    //   gif.addFrame(imgElement)
-    //   // 转码Gif完毕，新建图片添加到容器
-    //   gif.on('finished', blob => {
-    //     var ne = new Image()
-    //     ne.src = URL.createObjectURL(blob)
-    //     box.appendChild(ne)
-    //   })
-    //   // Gif渲染
-    //   gif.render()
-    // },
-    // // 处理数据类型
-    // handleDataTransferItems (items) {
-    //   for (var i = 0; i < items.length; i += 1) {
-    //     var kind = items[i].kind
-    //     var type = items[i].type
-    //     // 逻辑开始
-    //     if (kind === 'string') {
-    //       if (type === 'text/plain') {
-    //         items[i].getAsString(function (str) {
-    //           console.log('产出纯文本：' + str)
-    //           // str是纯文本，该怎么处理，就在这里处理
-    //         })
-    //       } else if (type === 'text/html') {
-    //         items[i].getAsString(function (str) {
-    //           console.log('产出富文本：' + str)
-    //           // str是富文本，就在这里处理
-    //         })
-    //       } else if (type === 'text/uri-list') {
-    //         var that = this
-    //         items[i].getAsString(function (str) {
-    //           // str是uri地址，在这里进行处理
-    //           console.log('产出url地址：' + str)
-    //           var img = new Image()
-    //           img.crossOrigin = ''
+    doSearch () {
+      if (!this.value) {
+        this.dialog = true
+        return
+      }
+      this.$router.push({ path: '/list', query: { keyword: this.value } })
+    },
+    // 转Gif格式
+    toGIF (imgElement = this.$refs.imgOrigin) {
+      // workerScript 放在了专门建的文件里面，因为webpack不打包，所以单独存放了
+      var box = this.$refs.box
+      var gif = new GIF({
+        workers: 2,
+        quality: 10,
+        height: imgElement.naturalHeight,
+        width: imgElement.naturalWidth,
+        workerScript: './js/gif.worker.js'
+      })
+      // 填入图片
+      gif.addFrame(imgElement)
+      // 转码Gif完毕，新建图片添加到容器
+      gif.on('finished', blob => {
+        var ne = new Image()
+        ne.src = URL.createObjectURL(blob)
+        box.appendChild(ne)
+      })
+      // Gif渲染
+      gif.render()
+    },
+    // 处理数据类型
+    handleDataTransferItems (items) {
+      for (var i = 0; i < items.length; i += 1) {
+        var kind = items[i].kind
+        var type = items[i].type
+        // 逻辑开始
+        if (kind === 'string') {
+          if (type === 'text/plain') {
+            items[i].getAsString(function (str) {
+              console.log('产出纯文本：' + str)
+              // str是纯文本，该怎么处理，就在这里处理
+            })
+          } else if (type === 'text/html') {
+            items[i].getAsString(function (str) {
+              console.log('产出富文本：' + str)
+              // str是富文本，就在这里处理
+            })
+          } else if (type === 'text/uri-list') {
+            var that = this
+            items[i].getAsString(function (str) {
+              // str是uri地址，在这里进行处理
+              console.log('产出url地址：' + str)
+              var img = new Image()
+              img.crossOrigin = ''
 
-    //           img.onload = () => {
-    //             that.toGIF(img)
-    //           }
-    //           img.src = str
-    //         })
-    //       }
-    //     } else if (kind === 'file') {
-    //       // 如果是文件类型
-    //       if (type === 'image/gif') {
-    //         console.log('.gif不用处理')
-    //       } else if (type.indexOf('image/') >= 0) {
-    //         var file = items[i].getAsFile()
-    //         console.log('产出图片对象：' + file)
-    //         this.uploadFile(file)
-    //       }
-    //     }
-    //   }
-    // },
-    // onDrop (e) {
-    //   this.enter = false
-    //   console.log('释放')
-    //   e.preventDefault()
-    //   e.stopPropagation()
-    //   var dt = e.dataTransfer
-    //   this.handleDataTransferItems(dt.items)
-    // },
-    // onDragEnter (e) {
-    //   this.enter = true
-    //   console.log('进入')
-    //   e.preventDefault()
-    //   e.stopPropagation()
-    // },
-    // onDragOver (e) {
-    //   console.log('移动')
-    //   e.preventDefault()
-    //   e.stopPropagation()
-    // },
-    // // 图片上传显示
-    // uploadFile (file) {
-    //   if (file.type.search('image') === 0) {
-    //     var reader = new FileReader()
-    //     var box = this.$refs.box
+              img.onload = () => {
+                that.toGIF(img)
+              }
+              img.src = str
+            })
+          }
+        } else if (kind === 'file') {
+          // 如果是文件类型
+          if (type === 'image/gif') {
+            console.log('.gif不用处理')
+          } else if (type.indexOf('image/') >= 0) {
+            var file = items[i].getAsFile()
+            console.log('产出图片对象：' + file)
+            this.uploadFile(file)
+          }
+        }
+      }
+    },
+    onDrop (e) {
+      this.enter = false
+      console.log('释放')
+      e.preventDefault()
+      e.stopPropagation()
+      var dt = e.dataTransfer
+      this.handleDataTransferItems(dt.items)
+    },
+    onDragEnter (e) {
+      this.enter = true
+      console.log('进入')
+      e.preventDefault()
+      e.stopPropagation()
+    },
+    onDragOver (e) {
+      console.log('移动')
+      e.preventDefault()
+      e.stopPropagation()
+    },
+    // 图片上传显示
+    uploadFile (file) {
+      if (file.type.search('image') === 0) {
+        var reader = new FileReader()
+        var box = this.$refs.box
 
-    //     reader.onload = e => {
-    //       // base64 图片格式
-    //       var BsaeImg = new Image()
-    //       BsaeImg.src = e.target.result
-    //       box.appendChild(BsaeImg)
-    //       // 图片加载完，调用转Gif
-    //       BsaeImg.onload = () => {
-    //         var canvas = document.createElement('canvas')
-    //         var maximum =
-    //           BsaeImg.naturalWidth > BsaeImg.naturalHeight
-    //             ? BsaeImg.naturalWidth
-    //             : BsaeImg.naturalHeight
+        reader.onload = e => {
+          // base64 图片格式
+          var BsaeImg = new Image()
+          BsaeImg.src = e.target.result
+          box.appendChild(BsaeImg)
+          // 图片加载完，调用转Gif
+          BsaeImg.onload = () => {
+            var canvas = document.createElement('canvas')
+            var maximum =
+              BsaeImg.naturalWidth > BsaeImg.naturalHeight
+                ? BsaeImg.naturalWidth
+                : BsaeImg.naturalHeight
 
-    //         var width = BsaeImg.naturalWidth / (maximum / 480)
-    //         var height = BsaeImg.naturalHeight / (maximum / 480)
-    //         canvas.width = width
-    //         canvas.height = height
-    //         canvas.getContext('2d').drawImage(BsaeImg, 0, 0, width, height)
+            var width = BsaeImg.naturalWidth / (maximum / 480)
+            var height = BsaeImg.naturalHeight / (maximum / 480)
+            canvas.width = width
+            canvas.height = height
+            canvas.getContext('2d').drawImage(BsaeImg, 0, 0, width, height)
 
-    //         canvas.toBlob((e) => {
-    //           console.log(e)
+            canvas.toBlob((e) => {
+              console.log(e)
 
-    //           console.log(URL.createObjectURL(e))
-    //         })
-    //         this.toGIF(canvas)
-    //       }
-    //     }
+              console.log(URL.createObjectURL(e))
+            })
+            this.toGIF(canvas)
+          }
+        }
 
-    //     reader.readAsDataURL(file)
-    //   } else {
-    //     console.log('文件格式错误！')
-    //   }
-    // }
+        reader.readAsDataURL(file)
+      } else {
+        console.log('文件格式错误！')
+      }
+    }
   }
 }
 </script>

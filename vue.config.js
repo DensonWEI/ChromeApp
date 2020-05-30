@@ -9,7 +9,7 @@ module.exports = {
     hotOnly: true,
     proxy: {
       '/api': {
-        target: 'https://pic.sogou.com/pics/json.jsp',
+        target: 'https://pic.sogou.com/pics',
         ws: false,
         changOrigin: true,
         pathRewrite: {
