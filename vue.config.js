@@ -9,7 +9,7 @@ module.exports = {
     hotOnly: true,
     proxy: {
       '/api': {
-        target: 'https://pic.sogou.com/pics',
+        target: 'https://pic.sogou.com/napi/wap/pic',
         ws: false,
         changOrigin: true,
         pathRewrite: {
@@ -17,6 +17,6 @@ module.exports = {
         }
       }
     }, // 设置代理
-    before: app => {}
+    before: app => { }
   }
 }

@@ -1,15 +1,14 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "嗨皮表情搜索",
     "description": "这是一个用于快速搜索表情包的插件，你可以使用快捷键“Ctrl + Shift + E”快速打开使用",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "icons": {
         "16": "img/icon.png",
         "48": "img/icon.png",
         "128": "img/icon.png"
     },
-
-    "browser_action": {
+    "action": {
         "default_title": "快捷表情搜索",
         "default_popup": "index.html"
     },
@@ -18,15 +17,15 @@
             "<all_urls>"
         ],
         "js": [
-            "js/about.e9ea3a47.js",
-            "js/app.js",
-            "js/chunk.js",
+            "js/about.bb2fe6fe.js",
+            "js/app.88fd383f.js",
+            "js/chunk-vendors.425d8a75.js",
             "js/gif.worker.js"
         ],
         "css": [
             "css/about.9f212b73.css",
-            "css/app.css",
-            "css/chunk.css"
+            "css/app.48be34f9.css",
+            "css/chunk-vendors.6fb1567a.css"
         ],
         "run_at": "document_start"
     }],
@@ -36,10 +35,10 @@
     },
     "devtools_page": "devtools.html",
     "commands": {
-        "_execute_browser_action": {
+        "_execute_action": {
             "suggested_key": {
                 "windows": "Ctrl+Shift+E",
-                "mac": "Command+Shift+E",
+                "mac": "Alt+Shift+E",
                 "chromeos": "Ctrl+Shift+E",
                 "linux": "Ctrl+Shift+E"
             },
